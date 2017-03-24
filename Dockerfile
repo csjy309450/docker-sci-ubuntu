@@ -18,6 +18,7 @@ RUN echo "developer:x:${uid}:" >> /etc/group
 RUN echo "developer ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 RUN chmod 0440 /etc/sudoers
 RUN chown ${uid}:${gid} -R /home/developer
+RUN xhost +
 
 USER developer
 ENV HOME /home/developer
