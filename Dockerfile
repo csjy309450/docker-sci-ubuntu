@@ -1,5 +1,4 @@
 #!/bin/bash
-#pull的镜像名,原始镜像
 FROM ubuntu
 
 # 完成一些必要库的安装
@@ -13,12 +12,12 @@ RUN apt-get install -y git-gui
 # 设置一些必要的系统权限
 RUN export uid=$(id -u) gid=$(id -g)
 RUN mkdir -p /home/developer
+RUN mkdir -p /home/myShare
 RUN echo "developer:x:${uid}:${gid}:Developer,,,:/home/developer:/bin/bash" >> /etc/passwd
 RUN echo "developer:x:${uid}:" >> /etc/group
 RUN echo "developer ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 RUN chmod 0440 /etc/sudoers
 RUN chown ${uid}:${gid} -R /home/developer
-RUN xhost +
 
 USER developer
 ENV HOME /home/developer
